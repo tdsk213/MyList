@@ -4,8 +4,6 @@ import java.util.*;
 
 public class MyList<T> implements AdvancedList<T>, AuthorHolder {
 
-    //test 1
-
     private int maxCapacity = 10;
     private int size = 0;
 
@@ -37,23 +35,19 @@ public class MyList<T> implements AdvancedList<T>, AuthorHolder {
     }
 
     @Override
-    public void insert(int index, T item) throws Exception {
+    public void insert(int index, T item) {
             extendIfFull();
             size++;
 
-        for (int i = this.size - 1; i > index; i--) {
-            elements[i] = elements[i - 1];
-        }
+        if (this.size - 1 - index >= 0) System.arraycopy(elements, index, elements, index + 1, this.size - 1 - index);
         elements[index] = item;
     }
 
     @Override
-    public void remove(int index) throws Exception {
+    public void remove(int index) {
         if (this.size > 0) {
             this.size--;
-            for (int i = index; i < this.size; i++) {
-                elements[i] = elements[i + 1];
-            }
+            if (this.size - index >= 0) System.arraycopy(elements, index + 1, elements, index, this.size - index);
         }
     }
 
