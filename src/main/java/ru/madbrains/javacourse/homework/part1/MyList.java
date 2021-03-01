@@ -2,7 +2,7 @@ package ru.madbrains.javacourse.homework.part1;
 
 import java.util.*;
 
-public class MyList<T> implements AdvancedList<T>, AuthorHolder, Cloneable {
+public class MyList<T> implements AdvancedList<T>, AuthorHolder {
 
     private int maxCapacity = 10;
     private int size = 0;
@@ -66,26 +66,14 @@ public class MyList<T> implements AdvancedList<T>, AuthorHolder, Cloneable {
     }
 
     @Override
-    public Object clone() {
-        try {
-            MyList<?> v = (MyList<?>) super.clone();
-            v.elements = Arrays.copyOf(this.elements, this.size);
-            return v;
-        } catch (CloneNotSupportedException e) {
-            throw new InternalError(e);
-        }
-    }
-
-    @Override
     public void addAll(SimpleList<T> list) {
         int newSize = list.size() + this.size;
         if (this.maxCapacity < newSize) {
                 Object[] newElements = new Object[this.maxCapacity + list.size()];
                 System.arraycopy(elements, 0, newElements, 0, this.size);
                 int index = this.size;
-                SimpleList clone = (SimpleList) ((MyList<T>) list).clone();
                 for (int i = 0; i < list.size(); i++) {
-                    newElements[index] = clone.get(i).get();
+                    newElements[index] = list.get(i).get();
                     index++;
                 }
                 this.elements = newElements;
@@ -145,10 +133,6 @@ public class MyList<T> implements AdvancedList<T>, AuthorHolder, Cloneable {
                 this.maxCapacity = elements.length;
             }
         }
-    }
-
-    public Object[] asArray() {
-        return elements;
     }
 
 
