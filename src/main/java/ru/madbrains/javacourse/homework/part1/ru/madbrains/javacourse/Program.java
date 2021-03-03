@@ -48,6 +48,23 @@ public class Program {
             System.out.println("element[" + i + "]: " + stringList.get(i).get());
         }
 
+        stringList = stringList.shuffle();
+
+        for (int i = 0; i < stringList.size(); i++) {
+            System.out.println("element[" + i + "]: " + stringList.get(i).get());
+        }
+
+        stringList = stringList.sort(new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return ((Comparable)o1).compareTo((Comparable)o2);
+            };
+        });
+
+        for (int i = 0; i < stringList.size(); i++) {
+            System.out.println("element[" + i + "]: " + stringList.get(i).get());
+        }
+
 
 //        for (int i = 1; i <= 200; i++)
 //             secondList.add(i);

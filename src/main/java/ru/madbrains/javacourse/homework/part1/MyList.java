@@ -82,9 +82,7 @@ public class MyList<T> implements AdvancedList<T>, AuthorHolder {
         Object[] left = new Object[len1];
         Object[] right = new Object[len2];
 
-        for (int x = 0; x < len1; x++) {
-            left[x] = arr[l + x];
-        }
+        if (len1 >= 0) System.arraycopy(arr, l + 0, left, 0, len1);
 
         for (int x = 0; x < len2; x++) {
             right[x] = arr[m + 1 + x];
