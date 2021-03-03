@@ -7,6 +7,7 @@ public class MyList<T> implements AdvancedList<T>, AuthorHolder {
     private int maxCapacity = 10;
     private int size = 0;
 
+
     private Object[] elements;
 
     public MyList() {
