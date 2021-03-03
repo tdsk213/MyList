@@ -7,13 +7,17 @@ public class TimSort {
 
     private static final int MIN_MERGE = 32;
 
-    private static Comparator<String> getComparator() {
-        return new Comparator<String>() {
+    private static boolean compare(Comparable s1, Comparable s2) {
+
+        if (new Comparator<Comparable>() {
             @Override
-            public int compare(String o1, String o2) {
+            public int compare(Comparable o1, Comparable o2) {
                 return o1.compareTo(o2);
             }
-        };
+        }.compare(s1, s2) >= 0) {
+            return true;
+        } else
+            return false;
     }
 
     public static int getMinrun(int n)
@@ -29,11 +33,11 @@ public class TimSort {
         return n + r;
     }
 
-    public static void insertionSort(Integer[] arr, int left, int right) {
+    public static void insertionSort(String[] arr, int left, int right) {
         for (int i = left + 1; i <= right; i++) {
-            Integer temp = arr[i];
+            String temp = arr[i];
             int j = i - 1;
-            while (j >= left && arr[j] > temp)
+            while (j >= left && compare(arr[j], temp)) //arr[j] > temp
             {
                 arr[j + 1] = arr[j];
                 j--;
@@ -43,11 +47,11 @@ public class TimSort {
     }
 
     // Merge function merges the sorted runs
-    public static void merge(Integer[] arr, int l, int m, int r) {
+    public static void merge(String[] arr, int l, int m, int r) {
 
         int len1 = m - l + 1, len2 = r - m;
-        int[] left = new int[len1];
-        int[] right = new int[len2];
+        String[] left = new String[len1];
+        String[] right = new String[len2];
 
         for (int x = 0; x < len1; x++) {
             left[x] = arr[l + x];
@@ -62,7 +66,7 @@ public class TimSort {
         int k = l;
 
         while (i < len1 && j < len2) {
-            if (left[i] <= right[j]) {
+            if (compare(left[i], right[j])) { //left[i] <= right[j]
                 arr[k] = left[i];
                 i++;
             }
@@ -86,7 +90,7 @@ public class TimSort {
         }
     }
 
-    public static void timSort(Integer[] arr) {
+    public static void timSort(String[] arr) {
         int n = arr.length;
         int minRun = getMinrun(MIN_MERGE);
 
@@ -107,7 +111,7 @@ public class TimSort {
         }
     }
 
-    public static void printArray(Integer[] arr, int n) {
+    public static void printArray(String[] arr, int n) {
         for (int i = 0; i < n; i++) {
             System.out.print(arr[i] + " ");
         }
@@ -117,7 +121,8 @@ public class TimSort {
 
     public static void main(String[] args)
     {
-        Integer[] arr = { -2, 7,  15,  -14, 0, 15,  0, 7, -7, -4, -13, 5, 8, -14, 12 };
+//        String[] arr = { -2, 7,  15,  -14, 0, 15,  0, 7, -7, -4, -13, 5, 8, -14, 12 };
+        String[] arr = {"Dima", "Anna", "Sergei"};
         int n = arr.length;
         System.out.println("Given Array is");
         printArray(arr, n);
