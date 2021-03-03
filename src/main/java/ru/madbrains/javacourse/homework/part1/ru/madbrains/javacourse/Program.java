@@ -1,5 +1,6 @@
 package ru.madbrains.javacourse.homework.part1.ru.madbrains.javacourse;
 
+import ru.madbrains.javacourse.homework.part1.AdvancedList;
 import ru.madbrains.javacourse.homework.part1.MyList;
 import ru.madbrains.javacourse.homework.part1.SimpleList;
 
@@ -9,7 +10,7 @@ import java.util.List;
 public class Program {
 
     public static void main(String[] args) throws Exception {
-        MyList<Integer> testList = new MyList<>();
+        AdvancedList<Integer> testList = new MyList<>();
         SimpleList<Integer> secondList = new MyList<>();
 
         testList.add(1);
@@ -63,6 +64,22 @@ public class Program {
         }
 
 
+
+        System.out.println("size: " + testList.size());
+
+        testList.shuffle();
+
+        for (int i = 0; i < testList.size(); i++) {
+            System.out.println("element[" + i + "]: " + testList.get(i).get());
+        }
+
+        System.out.println("size: " + testList.size());
+
+        testList = testList.shuffle();
+
+        for (int i = 0; i < testList.size(); i++) {
+            System.out.println("element[" + i + "]: " + testList.get(i).get());
+        }
 
         System.out.println("size: " + testList.size());
     }

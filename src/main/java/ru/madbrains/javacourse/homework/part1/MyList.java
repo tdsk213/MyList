@@ -16,7 +16,23 @@ public class MyList<T> implements AdvancedList<T>, AuthorHolder {
 
     @Override
     public AdvancedList<T> shuffle() {
-        return null;
+        AdvancedList<T> shuffledList = new MyList<>();
+        Object[] shuffledArray = new Object[size];
+        System.arraycopy(elements, 0, shuffledArray, 0, size);
+        int index;
+        Object temp;
+        Random random = new Random();
+        for (int i = size - 1; i > 0; i--)
+        {
+            index = random.nextInt(i + 1);
+            temp = shuffledArray[index];
+            shuffledArray[index] = shuffledArray[i];
+            shuffledArray[i] = temp;
+        }
+        for (int i = 0; i < this.size; i++) {
+            shuffledList.add((T)shuffledArray[i]);
+        }
+        return shuffledList;
     }
 
     @Override
