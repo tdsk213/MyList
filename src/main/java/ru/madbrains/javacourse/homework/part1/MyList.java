@@ -95,7 +95,7 @@ public class MyList<T> implements AdvancedList<T>, AuthorHolder {
         int k = l;
 
         while (i < len1 && j < len2) {
-            if (comparator.compare((T)left[i], (T)right[j]) <= 0) { //left[i] <= right[j]
+            if (comparator.compare((T)left[i], (T)right[j]) < 0) { //left[i] <= right[j]
                 arr[k] = left[i];
                 i++;
             }

@@ -13,6 +13,7 @@ public class Program {
     public static void main(String[] args) throws Exception {
         AdvancedList<Integer> testList = new MyList<>();
         SimpleList<Integer> secondList = new MyList<>();
+        AdvancedList<String> stringList = new MyList<>();
 
         testList.add(1);
         testList.add(2);
@@ -25,10 +26,33 @@ public class Program {
         testList.add(9);
         testList.add(10);
 
+        stringList.add("Name");
+        stringList.add("Dima");
+        stringList.add("Anna");
+        stringList.add("Dimae");
+        stringList.add("Annae");
+        stringList.add("Z");
+
+        for (int i = 0; i < stringList.size(); i++) {
+            System.out.println("element[" + i + "]: " + stringList.get(i).get());
+        }
+
+        stringList = stringList.sort(new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return ((Comparable)o1).compareTo((Comparable)o2);
+            };
+        });
+
+        for (int i = 0; i < stringList.size(); i++) {
+            System.out.println("element[" + i + "]: " + stringList.get(i).get());
+        }
+
+
 //        for (int i = 1; i <= 200; i++)
 //             secondList.add(i);
 
-        if (testList.isEmpty()) System.out.println("true");
+//        if (testList.isEmpty()) System.out.println("true");
 
 
 //        for (int i = 0; i < testList.size(); i++) {
