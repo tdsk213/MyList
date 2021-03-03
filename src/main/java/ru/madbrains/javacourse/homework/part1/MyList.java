@@ -15,19 +15,6 @@ public class MyList<T> implements AdvancedList<T>, AuthorHolder {
         this.elements = new Object[maxCapacity];
     }
 
-    private static boolean compare(Object s1, Object s2) {
-
-        if (new Comparator<Object>() {
-            @Override
-            public int compare(Object o1, Object o2) {
-                return ((Comparable)o1).compareTo((Comparable)o2);
-            }
-        }.compare(s1, s2) >= 0) {
-            return true;
-        } else
-            return false;
-    }
-
     @Override
     public AdvancedList<T> shuffle() {
         AdvancedList<T> shuffledList = new MyList<>();
@@ -54,9 +41,13 @@ public class MyList<T> implements AdvancedList<T>, AuthorHolder {
 
         AdvancedList<T> sortedList = new MyList<>();
         Object[] sortedArray = new Object[size];
-        timSort(sortedArray);
+        System.arraycopy(elements, 0, sortedArray, 0, size);
+        timSort(sortedArray, comparator);
 
-        return null;
+        for (int i = 0; i < this.size; i++) {
+            sortedList.add((T)sortedArray[i]);
+        }
+        return sortedList;
     }
 
     private static int getMinrun(int n)
@@ -72,11 +63,11 @@ public class MyList<T> implements AdvancedList<T>, AuthorHolder {
         return n + r;
     }
 
-    private static void insertionSort(Object[] arr, int left, int right) {
+    private void insertionSort(Object[] arr, int left, int right, Comparator<T> comparator) {
         for (int i = left + 1; i <= right; i++) {
             Object temp = arr[i];
             int j = i - 1;
-            while (j >= left && compare(arr[j], temp)) //arr[j] > temp
+            while (j >= left && comparator.compare((T)arr[j], (T)temp) > 0) //arr[j] > temp
             {
                 arr[j + 1] = arr[j];
                 j--;
@@ -85,7 +76,7 @@ public class MyList<T> implements AdvancedList<T>, AuthorHolder {
         }
     }
 
-    private static void merge(Object[] arr, int l, int m, int r) {
+    private void merge(Object[] arr, int l, int m, int r, Comparator<T> comparator) {
 
         int len1 = m - l + 1, len2 = r - m;
         Object[] left = new Object[len1];
@@ -104,7 +95,7 @@ public class MyList<T> implements AdvancedList<T>, AuthorHolder {
         int k = l;
 
         while (i < len1 && j < len2) {
-            if (compare(left[i], right[j])) { //left[i] <= right[j]
+            if (comparator.compare((T)left[i], (T)right[j]) <= 0) { //left[i] <= right[j]
                 arr[k] = left[i];
                 i++;
             }
@@ -128,12 +119,12 @@ public class MyList<T> implements AdvancedList<T>, AuthorHolder {
         }
     }
 
-    public static void timSort(Object[] arr) {
+    public void timSort(Object[] arr, Comparator<T> comparator) {
         int n = arr.length;
         int minRun = getMinrun(MIN_MERGE);
 
         for (int i = 0; i < n; i += minRun) {
-            insertionSort(arr, i, Math.min((i + 31), (n - 1)));
+            insertionSort(arr, i, Math.min((i + 31), (n - 1)), comparator);
         }
 
         for (int size = minRun; size < n; size = 2 * size) {
@@ -144,7 +135,7 @@ public class MyList<T> implements AdvancedList<T>, AuthorHolder {
                 int right = Math.min((left + 2 * size - 1),
                         (n - 1));
 
-                merge(arr, left, mid, right);
+                merge(arr, left, mid, right, comparator);
             }
         }
     }

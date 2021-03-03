@@ -5,6 +5,7 @@ import ru.madbrains.javacourse.homework.part1.MyList;
 import ru.madbrains.javacourse.homework.part1.SimpleList;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Program {
@@ -82,5 +83,21 @@ public class Program {
         }
 
         System.out.println("size: " + testList.size());
+
+        testList = testList.sort(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return ((Comparable)o1).compareTo((Comparable)o2);
+            };
+        });
+
+
+        for (int i = 0; i < testList.size(); i++) {
+            System.out.println("element[" + i + "]: " + testList.get(i).get());
+        }
+
+        System.out.println("size: " + testList.size());
+
+
     }
 }
