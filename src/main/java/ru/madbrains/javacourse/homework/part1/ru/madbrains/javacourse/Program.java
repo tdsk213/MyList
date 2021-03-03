@@ -40,7 +40,7 @@ public class Program {
         stringList = stringList.sort(new Comparator<String>() {
             @Override
             public int compare(String o1, String o2) {
-                return ((Comparable)o1).compareTo((Comparable)o2);
+                return o1.compareTo(o2);
             };
         });
 
@@ -102,7 +102,7 @@ public class Program {
         testList = testList.sort(new Comparator<Integer>() {
             @Override
             public int compare(Integer o1, Integer o2) {
-                return ((Comparable)o1).compareTo((Comparable)o2);
+                return (o1.compareTo(o2));
             };
         });
 

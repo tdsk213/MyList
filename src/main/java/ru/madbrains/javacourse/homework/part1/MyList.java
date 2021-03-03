@@ -78,7 +78,8 @@ public class MyList<T> implements AdvancedList<T>, AuthorHolder {
 
     private void merge(Object[] arr, int l, int m, int r, Comparator<T> comparator) {
 
-        int len1 = m - l + 1, len2 = r - m;
+        int len1 = m - l + 1,
+                len2 = r - m;
         Object[] left = new Object[len1];
         Object[] right = new Object[len2];
 
@@ -119,7 +120,7 @@ public class MyList<T> implements AdvancedList<T>, AuthorHolder {
 
     public void timSort(Object[] arr, Comparator<T> comparator) {
         int n = arr.length;
-        int minRun = getMinrun(MIN_MERGE);
+        int minRun = getMinrun(size);
 
         for (int i = 0; i < n; i += minRun) {
             insertionSort(arr, i, Math.min((i + 31), (n - 1)), comparator);
