@@ -6,7 +6,7 @@ public class MyList<T> implements AdvancedList<T>, AuthorHolder {
 
     private int maxCapacity = 10;
     private int size = 0;
-    private static final int MIN_MERGE = 32;
+    private static final int MIN_MERGE = 64;
 
 
     private Object[] elements;
