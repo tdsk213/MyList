@@ -20,7 +20,7 @@ public class TimSort {
 
     // This function sorts array from left index to
 // to right index which is of size atmost RUN
-    public static void insertionSort(int[] arr, int left, int right) {
+    public static void insertionSort(Integer[] arr, int left, int right) {
         for (int i = left + 1; i <= right; i++) {
             int temp = arr[i];
             int j = i - 1;
@@ -34,7 +34,7 @@ public class TimSort {
     }
 
     // Merge function merges the sorted runs
-    public static void merge(int[] arr, int l, int m, int r) {
+    public static void merge(Integer[] arr, int l, int m, int r) {
         // Original array is broken in two parts
         // left and right array
         int len1 = m - l + 1, len2 = r - m;
@@ -86,7 +86,7 @@ public class TimSort {
 
     // Iterative Timsort function to sort the
 // array[0...n-1] (similar to merge sort)
-    public static void timSort(int[] arr) {
+    public static void timSort(Integer[] arr) {
         int n = arr.length;
         int minRun = getMinrun(MIN_MERGE);
 
@@ -126,7 +126,7 @@ public class TimSort {
     }
 
     // Utility function to print the Array
-    public static void printArray(int[] arr, int n) {
+    public static void printArray(Integer[] arr, int n) {
         for (int i = 0; i < n; i++) {
             System.out.print(arr[i] + " ");
         }
@@ -136,7 +136,7 @@ public class TimSort {
 
     public static void main(String[] args)
     {
-        int[] arr = { -2, 7,  15,  -14, 0, 15,  0, 7, -7, -4, -13, 5, 8, -14, 12 };
+        Integer[] arr = { -2, 7,  15,  -14, 0, 15,  0, 7, -7, -4, -13, 5, 8, -14, 12 };
         int n = arr.length;
         System.out.println("Given Array is");
         printArray(arr, n);
