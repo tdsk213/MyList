@@ -26,7 +26,7 @@ public class Program {
         testList.add(9);
         testList.add(10);
 
-        stringList.add("Name");
+        stringList.add("Sergey");
         stringList.add("Dima");
         stringList.add("Anna");
         stringList.add("Dimae");
@@ -90,40 +90,14 @@ public class Program {
 //        System.out.println("last: " + testList.last(1));
 
         testList.remove(3);
+
         System.out.println("size: " + testList.size());
-//        for (int i = 0; i < testList.size(); i++) {
-//            System.out.println("element: " + testList.get(i).get());
-//        }
+        for (int i = 0; i < testList.size(); i++) {
+            System.out.println("element: " + testList.get(i).get());
+        }
 
 
         testList.addAll(testList);
-
-        System.out.println("size: " + testList.size());
-
-
-        for (int i = 0; i < testList.size(); i++) {
-            System.out.println("element[" + i + "]: " + testList.get(i).get());
-        }
-
-
-
-        System.out.println("size: " + testList.size());
-
-        testList.shuffle();
-
-        for (int i = 0; i < testList.size(); i++) {
-            System.out.println("element[" + i + "]: " + testList.get(i).get());
-        }
-
-        System.out.println("size: " + testList.size());
-
-        testList = testList.shuffle();
-
-        for (int i = 0; i < testList.size(); i++) {
-            System.out.println("element[" + i + "]: " + testList.get(i).get());
-        }
-
-        System.out.println("size: " + testList.size());
 
         testList = testList.sort(new Comparator<Integer>() {
             @Override
@@ -131,6 +105,8 @@ public class Program {
                 return ((Comparable)o1).compareTo((Comparable)o2);
             };
         });
+
+        testList.remove(1);
 
 
         for (int i = 0; i < testList.size(); i++) {
